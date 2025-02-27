@@ -56,19 +56,17 @@ class Human:
         return 0
 
     def express_contempt(self):
-        """Выражение презрения: длинная пауза, низкая интонация, резкий тембр."""
         contempt = Emotion("презрение", 10)
         self.add_emotion(contempt)
         if self.speech:
-            self.speech.modify_pause(Pause(1.0))  # Длинная пауза
-            self.speech.modify_intonation(Intonation(2))  # Низкая интонация
-            self.speech.modify_timbre(Timbre(3))  # Резкий тембр
+            self.speech.modify_pause(Pause(1.0))
+            self.speech.modify_intonation(Intonation(2))
+            self.speech.modify_timbre(Timbre(3))
 
     def express_terror(self):
-        """Выражение ужаса: короткая пауза, высокая интонация, дрожащий тембр."""
         terror = Emotion("ужас", 10)
         self.add_emotion(terror)
         if self.speech:
-            self.speech.modify_pause(Pause(0.1))  # Короткая пауза
-            self.speech.modify_intonation(Intonation(8))  # Высокая интонация
-            self.speech.modify_timbre(Timbre(1))  # Дрожащий тембр
+            self.speech.modify_pause(Pause(0.1))
+            self.speech.modify_intonation(Intonation(8))
+            self.speech.modify_timbre(Timbre(1))
