@@ -58,7 +58,7 @@ def test_invalid_emotion_intensity(emotion_name, intensity):
     "emotion_name, expected_intensity",
     [
         ("презрение", 10),
-        ("радость", 0)
+        ("ужас", 10)
     ]
 )
 def test_get_emotion_intensity(human, emotion_name, expected_intensity):
