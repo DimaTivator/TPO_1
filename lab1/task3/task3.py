@@ -34,9 +34,6 @@ class Emotion:
         self.name = name
         self.intensity = intensity
 
-    def modify_intensity(self, new_intensity):
-        self.intensity = new_intensity
-
 class Human:
     def __init__(self, name):
         self.name = name
@@ -50,23 +47,21 @@ class Human:
         self.emotions.append(emotion)
 
     def get_emotion_intensity(self, emotion_name):
-        for emotion in self.emotions:
-            if emotion.name == emotion_name:
-                return emotion.intensity
-        return 0
+        return next((emotion.intensity for emotion in self.emotions if emotion.name == emotion_name), 0)
 
-    def express_contempt(self):
-        contempt = Emotion("презрение", 10)
-        self.add_emotion(contempt)
-        if self.speech:
-            self.speech.modify_pause(Pause(1.0))
-            self.speech.modify_intonation(Intonation(2))
-            self.speech.modify_timbre(Timbre(3))
+    def express_emotion(self, emotion_name):
+        emotions_params = {
+            "презрение": (1.0, 2, 3),
+            "ужас": (0.1, 8, 1)
+        }
 
-    def express_terror(self):
-        terror = Emotion("ужас", 10)
-        self.add_emotion(terror)
+        if emotion_name not in emotions_params:
+            raise ValueError("Неизвестная эмоция")
+
+        pause_duration, intonation_level, timbre_quality = emotions_params[emotion_name]
+
+        self.add_emotion(Emotion(emotion_name, 10))
         if self.speech:
-            self.speech.modify_pause(Pause(0.1))
-            self.speech.modify_intonation(Intonation(8))
-            self.speech.modify_timbre(Timbre(1))
+            self.speech.modify_pause(Pause(pause_duration))
+            self.speech.modify_intonation(Intonation(intonation_level))
+            self.speech.modify_timbre(Timbre(timbre_quality))
