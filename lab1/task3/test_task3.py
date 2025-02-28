@@ -62,8 +62,7 @@ def test_invalid_emotion_intensity(emotion_name, intensity):
     ]
 )
 def test_get_emotion_intensity(human, emotion_name, expected_intensity):
-    if emotion_name == "презрение":
-        human.express_contempt()
+    human.express_emotion(emotion_name)
     assert human.get_emotion_intensity(emotion_name) == expected_intensity
 
 
